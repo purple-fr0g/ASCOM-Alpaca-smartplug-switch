@@ -1,0 +1,92 @@
+title = "Alpaca Powerstrip Driver"
+
+[network]
+ip_address = ""
+port = 5_555
+
+[server]
+location = "Maybe Somewhere idk"
+verbose_driver_exceptions = true
+
+[device]
+step_size = 1
+
+    [[device.strips]]
+    name = "first power strip"
+    addr = "localhost:6767"
+    driver = "device-name"
+
+        [[device.strips.switch]] # 1
+        name = "switchname"
+        description = "switch one"
+
+        [[device.strips.switch]] # 2
+        name = "switchname"
+        description = "switch two"
+
+        [[device.strips.switch]] # 3
+        name = "switchname"
+        description = "switch three"
+
+        [[device.strips.switch]] # 4
+        name = "switchname"
+        description = "switch four"
+
+        [[device.strips.switch]] # 5
+        name = "switchname"
+        description = "switch five"
+
+        [[device.strips.switch]] # 6
+        name = "switchname"
+        description = "switch six"
+
+        [[device.strips.switch]] # 7
+        name = "switchname"
+        description = "switch seven"
+
+        [[device.strips.switch]] # 8
+        name = "switchname"
+        description = "switch eight"
+
+    [[device.strips]]
+    name = "second power strip"
+    addr = "localhost:6768"
+    driver = "device-name"
+
+        [[device.strips.switch]] # 1
+        name = "switchname"
+        description = "switch one"
+
+        [[device.strips.switch]] # 2
+        name = "switchname"
+        description = "switch two"
+
+        [[device.strips.switch]] # 3
+        name = "switchname"
+        description = "switch three"
+
+        [[device.strips.switch]] # 4
+        name = "switchname"
+        description = "switch four"
+
+        [[device.strips.switch]] # 5
+        name = "switchname"
+        description = "switch five"
+
+        [[device.strips.switch]] # 6
+        name = "switchname"
+        description = "switch six"
+
+        [[device.strips.switch]] # 7
+        name = "switchname"
+        description = "switch seven"
+
+        [[device.strips.switch]] # 8
+        name = "switchname"
+        description = "switch eight"
+
+[logging]
+log_level = "INFO"
+log_to_stdout = true
+max_size_mb = 5
+num_keep_logs = 1
