@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 POWERSWITCHLEN = 8
 AUTH = "YWRtaW46YWRtaW4=" # 'admin:admin' (b64)
 
-def switch_power(strip_ip: str, outlet_index: int, to_state: bool):
+def switch_power(strip_ip: str, outlet_index: int, to_state: bool) -> None:
     response = get(
         f"http://{strip_ip}/control_outlet.htm?outlet{outlet_index}=1&op={int(to_state)}&submit=Apply",
         headers={
@@ -15,7 +15,7 @@ def switch_power(strip_ip: str, outlet_index: int, to_state: bool):
     response.raise_for_status()
     return None
 
-def get_power_status(strip_ip: str):
+def get_power_status(strip_ip: str) -> list[bool]:
     response = get(
         f"http://{strip_ip}/control_outlet.htm",
         headers={
