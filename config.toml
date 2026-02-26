@@ -1,4 +1,4 @@
-title = "Alpaca Powerstrip Driver"
+title = "Alpaca smart plug Driver"
 
 [network]
 ip_address = ""
