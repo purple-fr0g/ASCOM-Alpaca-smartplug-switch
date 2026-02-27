@@ -74,9 +74,6 @@ def start_switch_device(logger_instance: Logger):
             success = False
             print(f"ERROR: '{device["driver"]}' specified in config.toml, is not in supported_devices: {supported_devices}")
 
-    if success:
-       print("ERROR: cannot start switch due to fatal error!")
-
     return success
 
 # ----------------------
@@ -186,8 +183,7 @@ class connect:
             if len(test) == get_device_size(devnum):
                 is_connected[devnum] = True
             else:
-                # TODO: raise error
-                pass
+                assert False
 
             resp.text = MethodResponse(req).json
         except Exception as ex:
@@ -238,7 +234,6 @@ class description:
 
 @before(PreProcessRequest(maxdev))
 class devicestate:
-
     def on_get(self, req: Request, resp: Response, devnum: int):
         if not is_connected[devnum]:
             resp.text = PropertyResponse(None, req,

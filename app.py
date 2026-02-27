@@ -224,6 +224,7 @@ def main():
     log.logger = logger
     exceptions.logger = logger
     if not switch.start_switch_device(logger):
+        logger.fatal("ERROR: cannot start switch due to fatal error!")
         sys.exit(1)
 
     discovery.logger = logger
