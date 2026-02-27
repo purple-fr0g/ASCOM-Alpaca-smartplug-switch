@@ -125,7 +125,7 @@ def get_request_field(name: str, req: Request, caseless: bool = False, default: 
         for param in req.params.items():        # [name,value] tuples
             if param[0].lower() == lcName:
                 return param[1]
-        if default == None:
+        if default is None:
             raise HTTPBadRequest(title=_bad_title, description=bad_desc)                # Missing or incorrect casing
         return default                          # not in args, return default
     else:                                       # Assume PUT since we never route other methods
@@ -137,7 +137,7 @@ def get_request_field(name: str, req: Request, caseless: bool = False, default: 
         else:
             if name in formdata and formdata[name] != '':
                 return formdata[name]
-        if default == None:
+        if default is None:
             raise HTTPBadRequest(title=_bad_title, description=bad_desc)                # Missing or incorrect casing
         return default
 
@@ -191,18 +191,22 @@ class PreProcessRequest():
             msg = f'Device number {str(devnum)} does not exist. Maximum device number is {self.maxdev}.'
             logger.error(msg)
             raise HTTPBadRequest(title=_bad_title, description=msg)
+
         test: str = get_request_field('ClientID', req, True, '0')   # Caseless, default = 0 if missing
         if not self._pos_or_zero(test):
             msg = f'Request has bad Alpaca ClientID value {test}'
             logger.error(msg)
             raise HTTPBadRequest(title=_bad_title, description=msg)
+
         if test == '0':
             req.params['ClientID'] = '0'                            # In case it's missing
+
         test: str = get_request_field('ClientTransactionID', req, True, '0') # Caseless, default = 0 if missing
         if not self._pos_or_zero(test):
             msg = f'Request has bad Alpaca ClientTransactionID value {test}'
             logger.error(msg)
             raise HTTPBadRequest(title=_bad_title, description=msg)
+
         if test == '0':
             req.params['ClientTransactionID'] = '0'                 # In case it's missing
 
@@ -239,7 +243,7 @@ class PropertyResponse():
             logger.info(f'{req.remote_addr} <- {str(value)}')
 
         if value is None: # fixes conformu issue
-            self.Value = None
+            self.Value = "None"
 
         self.ErrorNumber = err.Number
         self.ErrorMessage = err.Message
@@ -279,7 +283,7 @@ class MethodResponse():
             logger.info(f'{req.remote_addr} <- {str(value)}')
 
         if value is None: # fixes conformu issue
-            self.Value = None
+            self.Value = "None"
 
         self.ErrorNumber = err.Number
         self.ErrorMessage = err.Message

@@ -11,79 +11,101 @@ verbose_driver_exceptions = true
 [device]
 step_size = 1
 
-    [[device.strips]]
+    [[device.smartplug]]
     name = "first power strip"
     addr = "localhost:6767"
-    driver = "device-name"
+    driver = "intertech"  # This must match the string in the "supported_devices" dict in switch.py
 
-        [[device.strips.switch]] # 1
+        [[device.smartplug.outlet]] # 1
         name = "switchname"
         description = "switch one"
 
-        [[device.strips.switch]] # 2
+        [[device.smartplug.outlet]] # 2
         name = "switchname"
         description = "switch two"
 
-        [[device.strips.switch]] # 3
+        [[device.smartplug.outlet]] # 3
         name = "switchname"
         description = "switch three"
 
-        [[device.strips.switch]] # 4
+        [[device.smartplug.outlet]] # 4
         name = "switchname"
         description = "switch four"
 
-        [[device.strips.switch]] # 5
+        [[device.smartplug.outlet]] # 5
         name = "switchname"
         description = "switch five"
 
-        [[device.strips.switch]] # 6
+        [[device.smartplug.outlet]] # 6
         name = "switchname"
         description = "switch six"
 
-        [[device.strips.switch]] # 7
+        [[device.smartplug.outlet]] # 7
         name = "switchname"
         description = "switch seven"
 
-        [[device.strips.switch]] # 8
+        [[device.smartplug.outlet]] # 8
         name = "switchname"
         description = "switch eight"
 
-    [[device.strips]]
+    [[device.smartplug]]
     name = "second power strip"
     addr = "localhost:6768"
-    driver = "device-name"
+    driver = "intertech" # This must match the string in the "supported_devices" dict in switch.py
 
-        [[device.strips.switch]] # 1
+    #  number of outlets is given implicitly, this switch is of size 8
+        [[device.smartplug.outlet]] # 1
         name = "switchname"
         description = "switch one"
 
-        [[device.strips.switch]] # 2
+        [[device.smartplug.outlet]] # 2
         name = "switchname"
         description = "switch two"
 
-        [[device.strips.switch]] # 3
+        [[device.smartplug.outlet]] # 3
         name = "switchname"
         description = "switch three"
 
-        [[device.strips.switch]] # 4
+        [[device.smartplug.outlet]] # 4
         name = "switchname"
         description = "switch four"
 
-        [[device.strips.switch]] # 5
+        [[device.smartplug.outlet]] # 5
         name = "switchname"
         description = "switch five"
 
-        [[device.strips.switch]] # 6
+        [[device.smartplug.outlet]] # 6
         name = "switchname"
         description = "switch six"
 
-        [[device.strips.switch]] # 7
+        [[device.smartplug.outlet]] # 7
         name = "switchname"
         description = "switch seven"
 
-        [[device.strips.switch]] # 8
+        [[device.smartplug.outlet]] # 8
         name = "switchname"
         description = "switch eight"
+
+    [[device.smartplug]]
+    name = "third power strip"
+    addr = "localhost:6769"
+    driver = "epower" # This must match the string in the "supported_devices" dict in switch.py
+
+        [[device.smartplug.outlet]] # 1
+        name = "switchname"
+        description = "switch one"
+
+        [[device.smartplug.outlet]] # 2
+        name = "switchname"
+        description = "switch two"
+
+        [[device.smartplug.outlet]] # 3
+        name = "switchname"
+        description = "switch three"
+
+        [[device.smartplug.outlet]] # 4
+        name = "switchname"
+        description = "switch four"
 
 [logging]
 log_level = "INFO"

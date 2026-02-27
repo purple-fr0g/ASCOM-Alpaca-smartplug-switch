@@ -94,7 +94,7 @@ class Config:
     # Device Section
     # --------------
     step_size: float = get_toml('device', 'step_size')
-    devices: list[dict] = get_toml('device', 'strips')
+    smartplugs: list[dict] = get_toml('device', 'smartplug')
 
     # ---------------
     # Logging Section
