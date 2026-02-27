@@ -1,16 +1,21 @@
 # ASCOM-Alpaca-smartplug-switch
 An implementation of an ASCOM Alpaca switch for smartplugs using Alpyca, based on the switch template.
 
+Terminology: This Switch is an Alpaca `Device` that controls multiple `smartplugs` which are referenced by the `devnum` and have one or more `outlets` that are referenced by `id`.
+
 ## 1 Configuration
 To use this Alpaca device with one or more smart plug(s) you need to:
-  1. add the driver into the `smartplug_driver/` folder.
-  2. import the driver module into `switch.py` and add the corresponding entry into the `supported_devices` dict.
-  3. add the Device into the config.toml
+  1. have the corresponding driver in `smartplug_driver/`.
+  2. import the module into `switch.py` and add driver into the `supported_devices` dict.
+  3. add the smartplug into the `config.toml`
 
 ### 1.1 Custom driver
-The current implementation just uses 2 methods:
+To make this Switch work with your switches you need a `driver` for them. 
+The current implementation of `switch.py` just uses 2 methods of the driver:
   1. one that sets a certain outlet to on/off
-  2. and one that gets all switch states
+     `switch_power(addr: str, outlet_index: int, to_state: bool) -> None`
+  2. and one that gets all switch states with signature
+     `get_power_status(addr: str) -> list[bool]`
 
 ### 1.2 config.toml specifics
 `[network]` controls the address and port of the Alpaca device itself. 
@@ -32,8 +37,4 @@ For each smart plug there should be an entry like this:
 ```
 
 Its important is that the smart plug has the same amount of outlets as it has `[[device.strips.switch]]` entries as its size is given implicitly by the number of switches specified here.
-
-You can have multiple devices
-
-# 2 Roadmap
-The goal is to make the switch 100% conform to the ASCOM Alpaca protocol as enforced by conformu. Right now it has no issues or errors in the regular device test, but still some errors in the conformu `Check Alpaca Protocol` tab.
+The order of the devices matters as the first device will have `devnum` 0, the 2nd one will have `devnum` 1 and so forth.
