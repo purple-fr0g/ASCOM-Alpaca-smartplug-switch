@@ -6,7 +6,7 @@ AUTH = "YWRtaW46YWRtaW4=" # 'admin:admin' (b64)
 
 def switch_power(strip_ip: str, outlet_index: int, to_state: bool) -> None:
     response = get(
-        f"http://{strip_ip}/control_outlet.htm?outlet{outlet_index}=1&op={int(to_state)}&submit=Apply",
+        f"http://{strip_ip}/control_outlet.htm?outlet{outlet_index}=1&op={int(not to_state)}&submit=Apply",
         headers={
             "Authorization": f"Basic {AUTH}"
         }
@@ -17,7 +17,7 @@ def switch_power(strip_ip: str, outlet_index: int, to_state: bool) -> None:
 
 def get_power_status(strip_ip: str) -> list[bool]:
     response = get(
-        f"http://{strip_ip}/control_outlet.htm",
+        f"http://{strip_ip}/status.xml",
         headers={
             "Authorization": f"Basic {AUTH}"
         }
