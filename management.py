@@ -82,12 +82,13 @@ class description:
 # -----------------
 class configureddevices():
     def on_get(self, req: Request, resp: Response):
-        confarray = [    # TODO ADD ONE FOR EACH DEVICE TYPE AND INSTANCE SERVED
-            {
-            'DeviceName'    : SwitchMetadata.Name,
-            'DeviceType'    : SwitchMetadata.DeviceType,
-            'DeviceNumber'  : 0,
-            'UniqueID'      : SwitchMetadata.DeviceID
-            }
-        ]
+        confarray = list()
+        for i, smartplug in enumerate(Config.smartplugs):
+            confarray.append({
+                'DeviceName'    : smartplug["name"],
+                'DeviceType'    : SwitchMetadata.DeviceType,
+                'DeviceNumber'  : i,
+                'UniqueID'      : SwitchMetadata.DeviceID
+            })
+
         resp.text = PropertyResponse(confarray, req).json

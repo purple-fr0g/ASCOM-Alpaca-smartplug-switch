@@ -42,12 +42,12 @@ maxdev = len(Config.smartplugs) - 1
 #
 class SwitchMetadata:
     """ This driver controls one/multiple smart plugs (specified in config.toml)"""
-    Name = '[device] driver'
+    Name = 'Smartplug Switch'
     Version = '0.1'
     Description = 'Alpaca switch controlling smart plugs'
     DeviceType = 'Switch'
     DeviceID = 'bfdcfd5a-3da2-4899-97a5-48ce1caba612' # https://guidgenerator.com/online-guid-generator.aspx
-    Info = 'Alpaca Switch\nImplements ISwitchV3\n'
+    Info = 'Alpaca Switch\nImplements ISwitchV3'
     MaxDeviceNumber = maxdev
     InterfaceVersion = 3       # ISwitchVxxx
 
